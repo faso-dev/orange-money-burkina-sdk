@@ -1,7 +1,10 @@
-# sdk orange-money-burkina  
-Ce package est une API qui encapsule l'API de base de Orange Money Burkina afin de faciliter son usage et son intégration par les développeurs.  
+# sdk orange-money-burkina   
+SDK non officiel de l'API de base de Orange Money Burkina
+afin de faciliter son usage et son intégration par les développeurs
+dans des projets PHP.  
   
-**Cas d'utilisation 1**  
+**Cas d'utilisation** 
+```php
 
     use Fasodev\Sdk\OMSDK;
 
@@ -24,31 +27,7 @@ Ce package est une API qui encapsule l'API de base de Orange Money Burkina afin 
         echo "</pre>";
         echo $result->message;
     }
-
-**Cas d'utilisation 2** 
-
-    use Fasodev\Sdk\OMSDK;
-
-    require_once __DIR__ . '/../vendor/autoload.php';
-
-    $result = OMSDK::init("username", "password", "merchantNumber", OMSDK::ENV_DEV)
-        ->setAmount(1000)//Montant de la transaction
-        ->setOTPCode(121212)//Code otp fourni par l'utilisateur
-        ->setClientNumber(76819212)//Le numero de client
-        ->processPayment()//Enclenchement du processus de paiement
-    ;
-
-    if ($result->status === 200) {
-        echo " paiement effectuée";
-        echo $result->transID;
-        
-    } else {
-        echo "<pre>";
-        print_r($result);
-        echo "</pre>";
-        echo $result->message;
-    }
-
+```
 **Authors**
 https://github.com/faso-dev 
 https://github.com/yenteck 

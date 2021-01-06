@@ -18,7 +18,7 @@
     }
   ],
   "require": {
-    "php" : "^7.1",
+    "php" : "^5.6",
     "ext-curl": "*",
     "ext-json": "*",
     "ext-simplexml": "*"
@@ -27,5 +27,6 @@
     "psr-4": {
       "Fasodev\\": "src/Fasodev/"
     }
-  }
+  },
+  "minimum-stability": "dev"
 }
