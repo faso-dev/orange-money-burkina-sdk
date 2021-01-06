@@ -9,7 +9,10 @@ declare(strict_types=1);
 
 namespace Fasodev\Sdk;
 
-
+/**
+ * Interface TransactionInterface
+ * @package Fasodev\Sdk
+ */
 interface TransactionInterface
 {
     public function processPayment();
