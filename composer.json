@@ -1,0 +1,22 @@
+{
+    "name": "faso-dev/orange-money-burkina-sdk",
+    "description": "Ce package est une API qui encapsule l'API de base de Orange Money Burkina",
+    "authors": [
+        {
+            "name": "Yentema Nadjoari",
+            "email": "n.yenteck@gmail.com"
+        },
+        {
+            "name": "Faso dev",
+            "homepage": "https://github.com/faso-dev"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Fasodev\\": ""
+        }
+    },
+    "require": {
+        "ext-curl": "*"
+    }
+}
