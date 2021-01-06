@@ -67,7 +67,7 @@ class OMSDK implements TransactionInterface
     /**
      * @var string
      */
-    private $api_url_prod = "https://orange.bf:9008/payment";
+    private $api_url_prod = "https://apiom.orange.bf:9007/payment";
 
     public static function init(
         string $username,
