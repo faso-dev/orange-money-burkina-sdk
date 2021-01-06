@@ -4,8 +4,8 @@ afin de faciliter son usage et son intégration par les développeurs
 dans des projets PHP.  
 
 **Installation via composer**
-```php
-composer require faso-dev/orange-money-burkina-sdk
+```shell
+composer require faso-dev/orange-money-burkina-sdk v1.alpha
 ```
 **Cas d'utilisation** 
 ```php
