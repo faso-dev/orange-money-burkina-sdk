@@ -59,7 +59,7 @@ class OMSDK implements TransactionInterface
     /**
      * @var
      */
-    private $referenceNumber = null;
+    private $referenceNumber = "";
     /**
      * @var string
      */
