@@ -94,19 +94,19 @@ class OMSDK implements TransactionInterface
 
         $xml = "<?xml version='1.0' encoding='UTF-8'?>
         <COMMAND>
-        <TYPE>OMPREQ</TYPE>
-        <customer_msisdn>{$this->clientNumber}</customer_msisdn>
-        <merchant_msisdn>{$this->merchantNumber}</merchant_msisdn>
-        <api_username>{$this->username}</api_username>
-        <api_password>{$this->password}</api_password>
-        <amount>{$this->amount}</amount>
-        <PROVIDER>101</PROVIDER>
-        <PROVIDER2>101</PROVIDER2>
-        <PAYID>12</PAYID>
-        <PAYID2>12</PAYID2>
-        <otp>{$this->otp}</otp>
-        <reference_number>{$this->referenceNumber}</reference_number>
-        <ext_txn_id>201500068544</ext_txn_id>
+            <TYPE>OMPREQ</TYPE>
+            <customer_msisdn>{$this->clientNumber}</customer_msisdn>
+            <merchant_msisdn>{$this->merchantNumber}</merchant_msisdn>
+            <api_username>{$this->username}</api_username>
+            <api_password>{$this->password}</api_password>
+            <amount>{$this->amount}</amount>
+            <PROVIDER>101</PROVIDER>
+            <PROVIDER2>101</PROVIDER2>
+            <PAYID>12</PAYID>
+            <PAYID2>12</PAYID2>
+            <otp>{$this->otp}</otp>
+            <reference_number>{$this->referenceNumber}</reference_number>
+            <ext_txn_id>201500068544</ext_txn_id>
         </COMMAND>";
 
         $ch = curl_init();
@@ -117,6 +117,7 @@ class OMSDK implements TransactionInterface
         curl_setopt($ch, CURLOPT_POSTFIELDS, $xml);
         $result = curl_exec($ch);
         curl_close($ch);
+
         return $result;
     }
 
