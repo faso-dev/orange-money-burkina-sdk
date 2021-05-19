@@ -68,6 +68,14 @@ class OrangeMoneyAPI implements TransactionInterface
      */
     private $api_url_prod = "https://apiom.orange.bf:9007/payment";
 
+    /**
+     * OrangeMoneyAPI constructor.
+     *
+     * @param string $username
+     * @param string $password
+     * @param $merchantNumber
+     * @param bool $env
+     */
     public function __construct(string $username,
                                 string $password,
                                 $merchantNumber,

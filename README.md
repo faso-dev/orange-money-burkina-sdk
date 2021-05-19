@@ -15,10 +15,16 @@ composer require faso-dev/orange-money-burkina-sdk v1.alpha
     use \Fasodev\Sdk\OrangeMoneyAPI;
 
     require_once __DIR__ . '/../vendor/autoload.php';
-
-    $processor = new SDK(new OrangeMoneyAPI("username", "password", "merchantNumber", SDK::ENV_DEV));
     
-    $result = $processor->handlePayment(); //Enclenchement du processus de paiement
+    $orangeMoneyAPI = new OrangeMoneyAPI("username", "password", "merchantNumber", SDK::ENV_DEV);
+    
+    $orangeMoneyAPI->setAmount(1000) // Montant de la transaction
+                    ->setOTPCode(121212) // Code otp fourni par l'utilisateur
+                    ->setClientNumber(76819212); // Le numero de client
+
+    $sdk = new SDK($orangeMoneyAPI);
+    
+    $result = $sdk->handlePayment(); //Enclenchement du processus de paiement
     
     if ($result->status === 200) {
         echo " paiement effectué";

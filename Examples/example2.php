@@ -6,18 +6,19 @@
  * file that was distributed with this source code.
  */
 
+use Fasodev\Sdk\OrangeMoneyAPI;
 use Fasodev\Sdk\SDK;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-$orangeMoney = SDK::init("username", "password", "merchantNumber", SDK::ENV_DEV)
+
+$sdk = new SDK((new OrangeMoneyAPI("username", "password", "merchantNumber", SDK::ENV_DEV))
     ->setAmount(1000) // Montant de la transaction
     ->setOTPCode(121212) // Code otp fourni par l'utilisateur
-    ->setClientNumber(76819212)// Le numero de client
-;
-$result = $orangeMoney
-    ->processPayment() // Enclenchement du processus de paiement
-;
+    ->setClientNumber(76819212)); // Le numero de client
+
+$result = $sdk->handlePayment(); //Enclenchement du processus de paiement
+
 if ($result->status === 200) {
     echo " paiement effectuée";
     echo $result->transID;
