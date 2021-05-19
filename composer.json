@@ -28,5 +28,9 @@
       "Fasodev\\": "src/Fasodev/"
     }
   },
-  "minimum-stability": "dev"
+  "config": {
+    "sort-packages": true
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }
