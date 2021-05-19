@@ -10,10 +10,10 @@ declare(strict_types=1);
 namespace Fasodev\Sdk;
 
 /**
- * Class OMSDK
+ * Class SDK
  * @package Fasodev\Sdk
  */
-class OMSDK
+class SDK
 {
     /**
      * @var TransactionInterface

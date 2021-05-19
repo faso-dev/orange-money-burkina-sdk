@@ -6,11 +6,11 @@
  * file that was distributed with this source code.
  */
 
-use Fasodev\Sdk\OMSDK;
+use Fasodev\Sdk\SDK;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-$result = OMSDK::init("username", "password", "merchantNumber", OMSDK::ENV_DEV)
+$result = SDK::init("username", "password", "merchantNumber", SDK::ENV_DEV)
     ->setAmount(1000) // Montant de la transaction
     ->setOTPCode(121212) // Code otp fourni par l'utilisateur
     ->setClientNumber(76819212) // Le numero de client

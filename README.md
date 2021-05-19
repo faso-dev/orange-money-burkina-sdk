@@ -7,15 +7,16 @@ dans des projets PHP.
 ```shell
 composer require faso-dev/orange-money-burkina-sdk v1.alpha
 ```
-**Cas d'utilisation** 
+**Cas d'utilisation**
+
 ```php
 
-    use Fasodev\Sdk\OMSDK;
+    use Fasodev\Sdk\SDK;
     use \Fasodev\Sdk\OrangeMoneyAPI;
 
     require_once __DIR__ . '/../vendor/autoload.php';
 
-    $processor = new OMSDK(new OrangeMoneyAPI("username", "password", "merchantNumber", OMSDK::ENV_DEV));
+    $processor = new SDK(new OrangeMoneyAPI("username", "password", "merchantNumber", SDK::ENV_DEV));
     
     $result = $processor->handlePayment(); //Enclenchement du processus de paiement
     
