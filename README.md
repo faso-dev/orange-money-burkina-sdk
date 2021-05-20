@@ -25,8 +25,7 @@ composer require faso-dev/orange-money-burkina-sdk v1.alpha
         $orangeMoneyAPI = new OrangeMoneyAPI(
             env('ORANGE_MONEY_USERNAME'),
             env('ORANGE_MONEY_PASSWORD'),
-            env('ORANGE_MONEY_MERCHANT_ID'),
-            OrangeMoneyAPI::ENV_DEV
+            env('ORANGE_MONEY_MERCHANT_ID')
         );
     
         $orangeMoneyAPI->setAmount(1000) // Montant de la transaction

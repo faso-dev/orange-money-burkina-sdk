@@ -11,8 +11,8 @@ namespace Fasodev\Sdk;
 
 use Fasodev\Exceptions\OrangeMoneyAPIException;
 use Fasodev\Exceptions\PaymentSDKException;
-use Fasodev\Utils\Str;
-use Fasodev\Utils\Xml;
+use Fasodev\Utils\Helpers;
+use Illuminate\Support\Str;
 
 /**
  * Class OrangeMoneyAPI
@@ -20,16 +20,6 @@ use Fasodev\Utils\Xml;
  */
 class OrangeMoneyAPI implements TransactionInterface
 {
-    /** @var bool */
-    const ENV_PROD = true;
-    /** @var bool */
-    const ENV_DEV = false;
-
-    /**
-     * @var bool
-     */
-    private $app_env;
-
     /**
      * Transaction amount
      * @var float
@@ -67,32 +57,19 @@ class OrangeMoneyAPI implements TransactionInterface
     private $referenceNumber = "";
 
     /**
-     * @var string
-     */
-    private $api_url_test = "https://testom.orange.bf:9008/payment";
-
-    /**
-     * @var string
-     */
-    private $api_url_prod = "https://apiom.orange.bf:9007/payment";
-
-    /**
      * OrangeMoneyAPI constructor.
      *
      * @param string $username
      * @param string $password
      * @param $merchantNumber
-     * @param bool $env
      */
     public function __construct(string $username,
                                 string $password,
-                                $merchantNumber,
-                                bool $env = self::ENV_PROD)
+                                $merchantNumber)
     {
         $this->setUsername($username);
         $this->setMerchantNumber($merchantNumber);
         $this->setPassword($password);
-        $this->setAppMode($env);
     }
 
     /**
@@ -102,7 +79,7 @@ class OrangeMoneyAPI implements TransactionInterface
     public function processPayment()
     {
         $RQ = $this->requestApi();
-        $parsed = Xml::toObject("<response>" . $RQ . "</response>");
+        $parsed = Helpers::toObject("<response>" . $RQ . "</response>");
 
         // Throw an exception if the request returns any status code that is not 200.
         if ($parsed->status != 200) {
@@ -114,14 +91,6 @@ class OrangeMoneyAPI implements TransactionInterface
 
     private function requestApi()
     {
-        //is production?
-        $api_url = $this->isProduction() ?
-            $this->api_url_prod :
-            $this->api_url_test;
-        //check if reference number is set
-        if (strlen($this->referenceNumber) === 0)
-            $this->referenceNumber = Str::generateRandomString();
-
         $xml = "<?xml version='1.0' encoding='UTF-8'?>
         <COMMAND>
             <TYPE>OMPREQ</TYPE>
@@ -135,12 +104,12 @@ class OrangeMoneyAPI implements TransactionInterface
             <PAYID>12</PAYID>
             <PAYID2>12</PAYID2>
             <otp>{$this->otp}</otp>
-            <reference_number>{$this->referenceNumber}</reference_number>
+            <reference_number>{$this->getReferenceNumber()}</reference_number>
             <ext_txn_id>201500068544</ext_txn_id>
         </COMMAND>";
 
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $api_url);
+        curl_setopt($ch, CURLOPT_URL, Helpers::getApiUrl());
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: text/xml'));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -237,11 +206,17 @@ class OrangeMoneyAPI implements TransactionInterface
     }
 
     /**
+     * Get reference number
+     *
+     * <p>Generate a random string of six digit if referenceNumber is not set</p>
+     *
      * @return mixed
      */
     public function getReferenceNumber(): string
     {
-        return $this->referenceNumber;
+        return trim($this->referenceNumber) !== ''
+            ? $this->referenceNumber
+            : Str::random(6);
     }
 
     /**
@@ -262,13 +237,5 @@ class OrangeMoneyAPI implements TransactionInterface
     {
         $this->app_env = $env;
         return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isProduction(): bool
-    {
-        return $this->app_env === self::ENV_PROD;
     }
 }

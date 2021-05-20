@@ -21,7 +21,6 @@ try {
 		env('ORANGE_MONEY_USERNAME'),
         env('ORANGE_MONEY_PASSWORD'),
         env('ORANGE_MONEY_MERCHANT_ID'),
-        OrangeMoneyAPI::ENV_DEV
     ))
         ->setAmount(1000) // Montant de la transaction
         ->setOTPCode(121212) // Code otp fourni par l'utilisateur
@@ -29,7 +28,7 @@ try {
 
     $result = $sdk->handlePayment(); //Enclenchement du processus de paiement
 
-    echo " paiement effectué";
+    echo "paiement effectué";
     echo $result->transID;
 
 } catch (PaymentSDKException $exception) {
