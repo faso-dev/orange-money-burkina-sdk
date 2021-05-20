@@ -10,10 +10,10 @@ declare(strict_types=1);
 namespace Fasodev\Sdk;
 
 /**
- * Class SDK
- * @package Fasodev\Sdk
+ * Class PaymentSDK
+ * @package Fasodev
  */
-class SDK
+class PaymentSDK
 {
     /**
      * @var TransactionInterface

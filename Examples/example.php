@@ -7,17 +7,17 @@
  */
 
 use Fasodev\Sdk\OrangeMoneyAPI;
-use Fasodev\Sdk\SDK;
+use Fasodev\Sdk\PaymentSDK;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-$orangeMoneyAPI = new OrangeMoneyAPI("username", "password", "merchantNumber", SDK::ENV_DEV);
+$orangeMoneyAPI = new OrangeMoneyAPI("username", "password", "merchantNumber", PaymentSDK::ENV_DEV);
 
 $orangeMoneyAPI->setAmount(1000) // Montant de la transaction
                 ->setOTPCode(121212) // Code otp fourni par l'utilisateur
                 ->setClientNumber(76819212); // Le numero de client
 
-$sdk = new SDK($orangeMoneyAPI);
+$sdk = new PaymentSDK($orangeMoneyAPI);
 
 $result = $sdk->handlePayment(); //Enclenchement du processus de paiement
 
