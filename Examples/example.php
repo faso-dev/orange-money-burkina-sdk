@@ -11,7 +11,7 @@ use Fasodev\Sdk\PaymentSDK;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-$orangeMoneyAPI = new OrangeMoneyAPI("username", "password", "merchantNumber", PaymentSDK::ENV_DEV);
+$orangeMoneyAPI = new OrangeMoneyAPI("username", "password", "merchantNumber", OrangeMoneyAPI::ENV_DEV);
 
 $orangeMoneyAPI->setAmount(1000) // Montant de la transaction
                 ->setOTPCode(121212) // Code otp fourni par l'utilisateur
