@@ -2,6 +2,8 @@
 
 namespace Fasodev\Sdk;
 
+use Fasodev\Exceptions\BaseException;
+use Fasodev\Exceptions\OrangeMoneyAPIException;
 use Fasodev\Utils\Str;
 use Fasodev\Utils\Xml;
 
@@ -89,12 +91,18 @@ class OrangeMoneyAPI implements TransactionInterface
 
     /**
      * @return mixed
+     * @throws BaseException
      */
     public function processPayment()
     {
         $RQ = $this->requestApi();
         $parsed = Xml::toObject("<response>" . $RQ . "</response>");
-        //TODO: hanle errors
+
+        // Throw an exception if the request returns any status code that is not 200.
+        if ($parsed->status != 200) {
+            throw new OrangeMoneyAPIException($parsed->message, $parsed->status);
+        }
+
         return $parsed;
     }
 
