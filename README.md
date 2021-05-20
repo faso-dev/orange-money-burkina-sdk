@@ -67,11 +67,20 @@ Vous pouvez également exécuter l'exemple de code en procédant comme suit à p
 php -S localhost:8000 -t Examples/
 ```
 
+N'oubliez pas de faire une copie du fichier `.env.exampe` et renommez-le en` .env`, puis définissez les variables à utiliser pour exécuter la requête comme ceci:
+
+```
+APP_ENV=local
+ORANGE_MONEY_USERNAME='johndoe'
+ORANGE_MONEY_PASSWORD='password'
+ORANGE_MONEY_MERCHANT_ID='123456789'
+```
+
 ...puis visitez `http://localhost:8000/example.php` ou ` http://localhost:8000/example2.php` depuis votre navigateur.
 
 ## Authors
 
-https://github.com/faso-dev 
-https://github.com/yenteck 
+- https://github.com/faso-dev 
+- https://github.com/yenteck 
 
 Merci de contribuer !
