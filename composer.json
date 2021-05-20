@@ -18,10 +18,12 @@
     }
   ],
   "require": {
-    "php" : ">=7.3",
+    "php": ">=7.3",
     "ext-curl": "*",
     "ext-json": "*",
-    "ext-simplexml": "*"
+    "ext-simplexml": "*",
+    "illuminate/support": "^8.42",
+    "vlucas/phpdotenv": "^5.3"
   },
   "require-dev": {
     "phpunit/phpunit": "^9.5"
@@ -43,6 +45,9 @@
   "prefer-stable": true,
   "scripts": {
     "tests": "vendor/bin/phpunit",
-    "testsVerbose": "@tests -vvv"
+    "testsVerbose": "@tests -vvv",
+    "post-root-package-install": [
+      "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+    ]
   }
 }
