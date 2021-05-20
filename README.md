@@ -55,7 +55,7 @@ Exécutez les tests avec:
 vendor/bin/phpunit
 ```
 
-or
+ou
 
 ```bash
 composer tests
