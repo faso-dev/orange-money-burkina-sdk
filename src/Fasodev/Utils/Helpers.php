@@ -23,7 +23,7 @@ class Helpers
         // a boolean instead will return a string. Laravel sets local to "local"
         // while Symfony sets local to "dev". In some cases people will prefer
         // to use "development" as their preferred value so we check for that too.
-        return env('APP_ENV') !== 'local' && env('APP_ENV') !== 'dev' && env('APP_ENV') !== 'development';
+        return env('APP_ENV') === 'prod' || env('APP_ENV') === 'production';
     }
 
     /**
