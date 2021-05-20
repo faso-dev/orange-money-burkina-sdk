@@ -1,13 +1,16 @@
-# sdk orange-money-burkina   
+# sdk orange-money-burkina  
+
 SDK non officiel de l'API de base de Orange Money Burkina
 afin de faciliter son usage et son intégration par les développeurs
 dans des projets PHP.  
 
-**Installation via composer**
+## Installation via composer
+
 ```shell
 composer require faso-dev/orange-money-burkina-sdk v1.alpha
 ```
-**Cas d'utilisation**
+
+## Cas d'utilisation
 
 ```php
 
@@ -43,7 +46,31 @@ composer require faso-dev/orange-money-burkina-sdk v1.alpha
         echo "Whoops! Unable to process payment. <br /> Error message returned by request: {$exception->getMessage()}. <br /> Error code returned by request: {$exception->getCode()}";
     }
 ```
-**Authors**
+
+## Testing
+
+Exécutez les tests avec:
+
+```bash
+vendor/bin/phpunit
+```
+
+or
+
+```bash
+composer tests
+```
+
+Vous pouvez également exécuter l'exemple de code en procédant comme suit à partir du terminal de commande:
+
+```bash
+php -S localhost:8000 -t Examples/
+```
+
+...puis visitez `http://localhost:8000/example.php` ou ` http://localhost:8000/example2.php` depuis votre navigateur.
+
+## Authors
+
 https://github.com/faso-dev 
 https://github.com/yenteck 
 
