@@ -9,11 +9,17 @@ declare(strict_types=1);
 
 namespace Fasodev\Sdk;
 
+use Fasodev\Exceptions\PaymentSDKException;
+
 /**
  * Interface TransactionInterface
  * @package Fasodev\Sdk
  */
 interface TransactionInterface
 {
+    /**
+     * @return mixed
+     * @throws PaymentSDKException
+     */
     public function processPayment();
 }

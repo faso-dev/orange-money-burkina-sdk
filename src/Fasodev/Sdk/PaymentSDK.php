@@ -9,6 +9,8 @@ declare(strict_types=1);
 
 namespace Fasodev\Sdk;
 
+use Fasodev\Exceptions\PaymentSDKException;
+
 /**
  * Class PaymentSDK
  * @package Fasodev
@@ -31,6 +33,7 @@ class PaymentSDK
 
     /**
      * @return mixed
+     * @throws PaymentSDKException
      */
     public function handlePayment()
     {

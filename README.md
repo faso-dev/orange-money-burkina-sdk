@@ -11,29 +11,33 @@ composer require faso-dev/orange-money-burkina-sdk v1.alpha
 
 ```php
 
+    use Fasodev\Exceptions\PaymentSDKException;
     use Fasodev\Sdk\PaymentSDK;
     use \Fasodev\Sdk\OrangeMoneyAPI;
 
     require_once __DIR__ . '/../vendor/autoload.php';
     
-    $orangeMoneyAPI = new OrangeMoneyAPI("username", "password", "merchantNumber", OrangeMoneyAPI::ENV_DEV);
+    try {
+        $orangeMoneyAPI = new OrangeMoneyAPI(
+            "username",
+            "password",
+            "merchantNumber",
+            OrangeMoneyAPI::ENV_DEV
+        );
     
-    $orangeMoneyAPI->setAmount(1000) // Montant de la transaction
-                    ->setOTPCode(121212) // Code otp fourni par l'utilisateur
-                    ->setClientNumber(76819212); // Le numero de client
-
-    $sdk = new PaymentSDK($orangeMoneyAPI);
+        $orangeMoneyAPI->setAmount(1000) // Montant de la transaction
+            ->setOTPCode(121212) // Code otp fourni par l'utilisateur
+            ->setClientNumber(76819212); // Le numero de client
     
-    $result = $sdk->handlePayment(); //Enclenchement du processus de paiement
+        $sdk = new PaymentSDK($orangeMoneyAPI);
     
-    if ($result->status === 200) {
+        $result = $sdk->handlePayment(); //Enclenchement du processus de paiement
+    
         echo " paiement effectué";
         echo $result->transID;
-    } else {
-        echo "<pre>";
-            print_r($result);
-        echo "</pre>";
-        echo $result->message;
+    
+    } catch (PaymentSDKException $exception) {
+        echo "Whoops! Unable to process payment. <br /> Error message returned by request: {$exception->getMessage()}. <br /> Error code returned by request: {$exception->getCode()}";
     }
 ```
 **Authors**
