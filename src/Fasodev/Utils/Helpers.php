@@ -42,7 +42,7 @@ class Helpers
      * @param string $xmlString
      * @return mixed
      */
-    public static function toObject(string $xmlString)
+    public static function xmlToObject(string $xmlString)
     {
         return json_decode(json_encode(simplexml_load_string($xmlString)));
     }

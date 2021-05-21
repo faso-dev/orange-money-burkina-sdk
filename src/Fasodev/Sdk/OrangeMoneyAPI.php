@@ -79,7 +79,7 @@ class OrangeMoneyAPI implements TransactionInterface
     public function processPayment()
     {
         $RQ = $this->requestApi();
-        $parsed = Helpers::toObject("<response>" . $RQ . "</response>");
+        $parsed = Helpers::xmlToObject("<response>" . $RQ . "</response>");
 
         // Throw an exception if the request returns any status code that is not 200.
         if ($parsed->status != 200) {
