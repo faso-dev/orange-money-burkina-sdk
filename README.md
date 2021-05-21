@@ -19,21 +19,26 @@ composer require faso-dev/orange-money-burkina-sdk v1.alpha
     use \Fasodev\Sdk\OrangeMoneyAPI;
 
     require_once __DIR__ . '/../vendor/autoload.php';
-
-    // Load .env into the application with the following lines of code.
-    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'/../');
-    $dotenv->load();
     
     try {
         $orangeMoneyAPI = new OrangeMoneyAPI(
-            env('ORANGE_MONEY_USERNAME'),
-            env('ORANGE_MONEY_PASSWORD'),
-            env('ORANGE_MONEY_MERCHANT_ID')
+            'username',
+            'password',
+            'merchant_number'
         );
     
         $orangeMoneyAPI->setAmount(1000) // Montant de la transaction
             ->setOTPCode(121212) // Code otp fourni par l'utilisateur
             ->setClientNumber(76819212); // Le numero de client
+            
+        // Not calling this method will cause the process to default to a test url.
+        // And the other hand, calling this method and not pass a parameter will
+        // cause the process to default to the production url as provided by Orange Money
+        // as of the time of this update.
+        // If you need to modify the url to make the api request to a custom endpoint,
+        // you can always provide one as a parameter like so:
+        // "$orangeMoneyAPI->setUrl('https://custom.orange.bf:9007/payment');"
+        $orangeMoneyAPI->setUrl();
     
         $sdk = new PaymentSDK($orangeMoneyAPI);
     

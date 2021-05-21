@@ -36,10 +36,4 @@
     <logging>
         <junit outputFile="build/report.junit.xml"/>
     </logging>
-    <php>
-        <server name="APP_ENV" value="testing"/>
-        <server name="ORANGE_MONEY_USERNAME" value="johndoe"/>
-        <server name="ORANGE_MONEY_PASSWORD" value="password"/>
-        <server name="ORANGE_MONEY_MERCHANT_ID" value="123456789"/>
-    </php>
 </phpunit>

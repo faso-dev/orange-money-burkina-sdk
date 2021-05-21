@@ -12,15 +12,11 @@ use Fasodev\Sdk\PaymentSDK;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-// Load .env into the application with the following lines of code.
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'/../');
-$dotenv->load();
-
 try {
     $orangeMoneyAPI = new OrangeMoneyAPI(
-        env('ORANGE_MONEY_USERNAME'),
-        env('ORANGE_MONEY_PASSWORD'),
-        env('ORANGE_MONEY_MERCHANT_ID')
+        'username',
+        'password',
+        'merchant_number'
     );
 
     $orangeMoneyAPI->setAmount(1000) // Montant de la transaction

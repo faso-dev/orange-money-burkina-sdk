@@ -3,6 +3,8 @@
 
 namespace Fasodev\Utils;
 
+use Exception;
+
 /**
  * Class Helpers
  *
@@ -11,31 +13,28 @@ namespace Fasodev\Utils;
 class Helpers
 {
     /**
-     * Check if the environment is in production.
+     * Generate a more truly "random" alpha-numeric string.
      *
-     * @return bool
-     */
-    public static function isProduction(): bool
-    {
-        // In major PHP frameworks like Laravel or Symfony, the environment variable
-        // to determine if it is local or production will be "APP_ENV" so we are
-        // going to use this as our default .env key. Sadly this will not return
-        // a boolean instead will return a string. Laravel sets local to "local"
-        // while Symfony sets local to "dev". In some cases people will prefer
-        // to use "development" as their preferred value so we check for that too.
-        return env('APP_ENV') === 'prod' || env('APP_ENV') === 'production';
-    }
-
-    /**
-     * Get url needed for the API request
-     *
+     * @param int $length
      * @return string
      */
-    public static function getApiUrl(): string
+    public static function randomString(int $length = 16): string
     {
-        return static::isProduction()
-            ? 'https://apiom.orange.bf:9007/payment'
-            : 'https://testom.orange.bf:9008/payment';
+        $string = '';
+
+        try {
+            while (($len = strlen($string)) < $length) {
+                $size = $length - $len;
+
+                $bytes = random_bytes($size);
+
+                $string .= substr(str_replace(['/', '+', '='], '', base64_encode($bytes)), 0, $size);
+            }
+        } catch (Exception $exception) {
+            $string = static::randomString($length);
+        }
+
+        return $string;
     }
 
     /**

@@ -12,7 +12,6 @@ namespace Fasodev\Sdk;
 use Fasodev\Exceptions\OrangeMoneyAPIException;
 use Fasodev\Exceptions\PaymentSDKException;
 use Fasodev\Utils\Helpers;
-use Illuminate\Support\Str;
 
 /**
  * Class OrangeMoneyAPI
@@ -55,6 +54,11 @@ class OrangeMoneyAPI implements TransactionInterface
      * @var
      */
     private $referenceNumber = "";
+
+    /**
+     * @var string
+     */
+    private $url;
 
     /**
      * OrangeMoneyAPI constructor.
@@ -109,7 +113,7 @@ class OrangeMoneyAPI implements TransactionInterface
         </COMMAND>";
 
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, Helpers::getApiUrl());
+        curl_setopt($ch, CURLOPT_URL, $this->getUrl());
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: text/xml'));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -119,6 +123,32 @@ class OrangeMoneyAPI implements TransactionInterface
         curl_close($ch);
 
         return $result;
+    }
+
+    /**
+     * Set the url to be used to make the API call.
+     *
+     * @return string
+     */
+    public function getUrl(): string
+    {
+        // Default to a test url if non is set.
+        return $this->url ?? 'https://testom.orange.bf:9008/payment';
+    }
+
+    /**
+     * Set the url to be used to make the API call.
+     *
+     * @param string $url <p>The URL of Orange Money API as of the time this packages was updated was
+     * 'https://testom.orange.bf:9008/payment' for testing and 'https://apiom.orange.bf:9007/payment' for production.
+     * Calling this method without passing a value will default to the production API url.</p>
+     *
+     * @return OrangeMoneyAPI
+     */
+    public function setUrl(string $url = 'https://apiom.orange.bf:9007/payment'): OrangeMoneyAPI
+    {
+        $this->url = $url;
+        return $this;
     }
 
     /**
@@ -216,7 +246,7 @@ class OrangeMoneyAPI implements TransactionInterface
     {
         return trim($this->referenceNumber) !== ''
             ? $this->referenceNumber
-            : Str::random(6);
+            : Helpers::randomString(6);
     }
 
     /**
@@ -226,16 +256,6 @@ class OrangeMoneyAPI implements TransactionInterface
     public function setReferenceNumber($referenceNumber): self
     {
         $this->referenceNumber = $referenceNumber;
-        return $this;
-    }
-
-    /**
-     * @param bool $env
-     * @return OrangeMoneyAPI
-     */
-    private function setAppMode(bool $env): self
-    {
-        $this->app_env = $env;
         return $this;
     }
 }
