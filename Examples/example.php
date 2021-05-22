@@ -14,10 +14,9 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 try {
     $orangeMoneyAPI = new OrangeMoneyAPI(
-        "username",
-        "password",
-        "merchantNumber",
-        OrangeMoneyAPI::ENV_DEV
+        'username',
+        'password',
+        'merchant_number'
     );
 
     $orangeMoneyAPI->setAmount(1000) // Montant de la transaction
@@ -28,7 +27,7 @@ try {
 
     $result = $sdk->handlePayment(); //Enclenchement du processus de paiement
 
-    echo " paiement effectué";
+    echo "paiement effectué";
     echo $result->transID;
 
 } catch (PaymentSDKException $exception) {

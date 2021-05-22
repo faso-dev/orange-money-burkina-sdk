@@ -13,14 +13,18 @@ use Fasodev\Sdk\PaymentSDK;
 require_once __DIR__ . '/../vendor/autoload.php';
 
 try {
-    $sdk = new PaymentSDK((new OrangeMoneyAPI("username", "password", "merchantNumber", OrangeMoneyAPI::ENV_DEV))
+    $sdk = new PaymentSDK((new OrangeMoneyAPI(
+        'username',
+        'password',
+        'merchant_number'
+    ))
         ->setAmount(1000) // Montant de la transaction
         ->setOTPCode(121212) // Code otp fourni par l'utilisateur
         ->setClientNumber(76819212)); // Le numero de client
 
     $result = $sdk->handlePayment(); //Enclenchement du processus de paiement
 
-    echo " paiement effectué";
+    echo "paiement effectué";
     echo $result->transID;
 
 } catch (PaymentSDKException $exception) {

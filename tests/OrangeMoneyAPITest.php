@@ -18,7 +18,11 @@ class OrangeMoneyAPITest extends TestCase
     {
         parent::setUp();
 
-        $this->orangeMoneyAPI = new OrangeMoneyAPI("username", "password", "merchantNumber", OrangeMoneyAPI::ENV_DEV);
+        $this->orangeMoneyAPI = new OrangeMoneyAPI(
+            'username',
+            'password',
+            'merchant_number'
+        );
     }
 
     /**
