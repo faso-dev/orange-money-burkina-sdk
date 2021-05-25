@@ -21,44 +21,44 @@ class OrangeMoneyAPI implements TransactionInterface
 {
     /**
      * Transaction amount
-     * @var float
+     * @var float|int|string
      */
-    private $amount;
+    protected $amount;
 
     /**
      * @var string
      */
-    private $otp;
+    protected $otp;
 
     /**
      * @var string
      */
-    private $username;
+    protected $username;
 
     /**
      * @var string
      */
-    private $password;
+    protected $password;
 
     /**
      * @var
      */
-    private $merchantNumber;
+    protected $merchantNumber;
 
     /**
      * @var
      */
-    private $clientNumber;
+    protected $clientNumber;
 
     /**
      * @var
      */
-    private $referenceNumber = "";
+    protected $referenceNumber = "";
 
     /**
      * @var string
      */
-    private $url;
+    protected $url;
 
     /**
      * OrangeMoneyAPI constructor.
@@ -152,15 +152,22 @@ class OrangeMoneyAPI implements TransactionInterface
     }
 
     /**
-     * @param float $amount
+     * @return float|int|string
+     */
+    public function getAmount()
+    {
+        return $this->amount;
+    }
+
+    /**
+     * @param float|int|string $amount
      * @return OrangeMoneyAPI
      */
-    public function setAmount(float $amount): self
+    public function setAmount($amount): self
     {
         $this->amount = $amount;
         return $this;
     }
-
     /**
      * @param string $otp
      * @return OrangeMoneyAPI
