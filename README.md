@@ -7,7 +7,7 @@ dans des projets PHP.
 ## Installation via composer
 
 ```shell
-composer require faso-dev/orange-money-burkina-sdk v1.beta
+composer require faso-dev/orange-money-burkina-sdk v2.beta
 ```
 
 ## Cas d'utilisation
