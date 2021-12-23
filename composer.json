@@ -1,48 +1,48 @@
 {
-  "name": "faso-dev/orange-money-burkina-sdk",
-  "type": "library",
-  "license": "MIT",
-  "description": "Ce package est une API qui encapsule l'API de base de Orange Money Burkina",
-  "authors": [
-    {
-      "name": "Yentema Nadjoari",
-      "email": "n.yenteck@gmail.com"
+    "name": "faso-dev/orange-money-burkina-sdk",
+    "type": "library",
+    "license": "MIT",
+    "description": "Ce package est une API qui encapsule l'API de base de Orange Money Burkina",
+    "authors": [
+        {
+            "name": "Yentema Nadjoari",
+            "email": "n.yenteck@gmail.com"
+        },
+        {
+            "name": "S.C Jerôme ONADJA",
+            "email": "jeromeonadja28@gmail.com"
+        },
+        {
+            "name": "Faso dev",
+            "homepage": "https://github.com/faso-dev"
+        }
+    ],
+    "require": {
+        "php": ">=7.4",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "ext-simplexml": "*"
     },
-    {
-      "name": "S.C Jerôme ONADJA",
-      "email": "jeromeonadja28@gmail.com"
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
     },
-    {
-      "name": "Faso dev",
-      "homepage": "https://github.com/faso-dev"
+    "autoload": {
+        "psr-4": {
+            "Fasodev\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Fasodev\\Tests\\": "tests"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+        "tests": "vendor/bin/phpunit",
+        "testsVerbose": "@tests -vvv"
     }
-  ],
-  "require": {
-    "php": ">=7.3",
-    "ext-curl": "*",
-    "ext-json": "*",
-    "ext-simplexml": "*"
-  },
-  "require-dev": {
-    "phpunit/phpunit": "^9.5"
-  },
-  "autoload": {
-    "psr-4": {
-      "Fasodev\\": "src/Fasodev/"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Fasodev\\Tests\\": "tests"
-    }
-  },
-  "config": {
-    "sort-packages": true
-  },
-  "minimum-stability": "dev",
-  "prefer-stable": true,
-  "scripts": {
-    "tests": "vendor/bin/phpunit",
-    "testsVerbose": "@tests -vvv"
-  }
 }

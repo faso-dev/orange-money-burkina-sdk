@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace Fasodev\Sdk;
 
-use Fasodev\Exceptions\PaymentSDKException;
+use Fasodev\Sdk\Exception\TransactionException;
 
 /**
  * Class PaymentSDK
@@ -20,7 +20,7 @@ class PaymentSDK
     /**
      * @var TransactionInterface
      */
-    protected $transaction;
+    protected TransactionInterface $transaction;
 
     /**
      * PaymentSDK constructor.
@@ -32,10 +32,10 @@ class PaymentSDK
     }
 
     /**
-     * @return mixed
-     * @throws PaymentSDKException
+     * @return TransactionResponse
+     * @throws TransactionException
      */
-    public function handlePayment()
+    public function handlePayment(): TransactionResponse
     {
         return $this->transaction->processPayment();
     }
