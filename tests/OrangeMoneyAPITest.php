@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  */
 class OrangeMoneyAPITest extends TestCase
 {
-    protected $orangeMoneyAPI;
+    protected OrangeMoneyAPI $orangeMoneyAPI;
 
     protected function setUp(): void
     {
@@ -25,10 +25,8 @@ class OrangeMoneyAPITest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
-    public function canInstantiateWithoutAnError()
+
+    public function testWeCanInstanciateAnOrangeApiClass()
     {
         $this->assertInstanceOf(OrangeMoneyAPI::class, $this->orangeMoneyAPI);
     }
