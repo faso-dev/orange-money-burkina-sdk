@@ -22,7 +22,6 @@ class XMLHttp
     public const WITH_SSL_DISABLED = false;
 
     /**
-     * Summary of request
      * @param string $url
      * @param array $headers
      * @param mixed $body
