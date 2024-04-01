@@ -25,7 +25,7 @@ class RequestBody
             <PAYID2>12</PAYID2>
             <otp>{$transactionData->getOtp()}</otp>
             <reference_number>{$transactionData->getReferenceNumber()}</reference_number>
-            <ext_txn_id>201500068544</ext_txn_id>
+            <ext_txn_id>{$transactionData->getExternalReference()}</ext_txn_id>
         </COMMAND>";
     }
 }

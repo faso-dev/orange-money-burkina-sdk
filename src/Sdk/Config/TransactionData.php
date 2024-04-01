@@ -14,17 +14,19 @@ class TransactionData
 
     protected string $otp;
 
+    protected string $externalReference;
 
-    private function __construct(string $clientNumber, string $paymentAmount, string $otp)
+    private function __construct(string $clientNumber, string $paymentAmount, string $otp, string $externalReference)
     {
         $this->otp = $otp;
         $this->paymentAmount = $paymentAmount;
         $this->clientNumber = $clientNumber;
+        $this->externalReference = $externalReference;
     }
 
-    public static function from(string $clientNumber, string $paymentAmount, string $otp): self
+    public static function from(string $clientNumber, string $paymentAmount, string $otp, string $externalReference): self
     {
-        return new self($clientNumber, $paymentAmount, $otp);
+        return new self($clientNumber, $paymentAmount, $otp, $externalReference);
     }
 
     /**
@@ -99,4 +101,19 @@ class TransactionData
         return $this;
     }
 
+    /**
+     * @return string
+     */
+    public function getExternalReference(): string
+    {
+        return $this->externalReference;
+    }
+
+    /**
+     * @param string $externalReference
+     */
+    public function setExternalReference(string $externalReference): void
+    {
+        $this->externalReference = $externalReference;
+    }
 }
