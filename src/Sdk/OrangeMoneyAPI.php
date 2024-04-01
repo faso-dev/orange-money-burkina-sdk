@@ -22,7 +22,7 @@ use Fasodev\Sdk\Exception\TransactionException;
 class OrangeMoneyAPI implements TransactionInterface
 {
     protected const DEV_API_URL = "https://testom.orange.bf:9008/payment";
-    protected const PROD_API_URL = "https://apiom.orange.bf:9007/payment";
+    protected const PROD_API_URL = "https://apiom.orange.bf";
 
     protected TransactionData $transactionData;
 
@@ -89,6 +89,12 @@ class OrangeMoneyAPI implements TransactionInterface
     public function withCustomReference(string $reference): self
     {
         $this->transactionData->setReferenceNumber($reference);
+        return $this;
+    }
+
+    public function withExternalReference(string $externalReference): self
+    {
+        $this->transactionData->setExternalReference($externalReference);
         return $this;
     }
 
