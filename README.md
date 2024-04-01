@@ -77,7 +77,7 @@ use Fasodev\Sdk\PaymentSDK;
 
 class OrangeMoneyService
 {
-    private $orangeMoneyAPI;
+    private OrangeMoneyAPI $orangeMoneyAPI;
 
     public function __construct()
     {
@@ -169,7 +169,7 @@ use Fasodev\Sdk\TransactionResponse;
 
 class OrangeMoneyService
 {
-    private $orangeMoneyAPI;
+    private OrangeMoneyAPI $orangeMoneyAPI;
 
     public function __construct()
     {
@@ -241,7 +241,6 @@ use App\Services\OrangeMoneyService;
 
 class PaymentController extends Controller
 {
-    private $orangeMoneyService;
 
     public function intentPayment(OrangeMoneyService $orangeMoneyService, OrangeMoneyRequest $request)
     {
@@ -302,7 +301,7 @@ use Fasodev\Sdk\TransactionResponse;
 
 class OrangeMoneyService
 {
-    private $orangeMoneyAPI;
+    private OrangeMoneyAPI $orangeMoneyAPI;
     
     public function __construct(
         string $username,
@@ -358,19 +357,12 @@ use Fasodev\Sdk\Exception\TransactionException;
 
 class PaymentController extends AbstractController
 {
-    private $orangeMoneyService;
-
-    public function __construct(OrangeMoneyService $orangeMoneyService)
-    {
-        $this->orangeMoneyService = $orangeMoneyService;
-    }
-
-    public function intentPayment(Request $request): JsonResponse
+    public function intentPayment(Request $request, OrangeMoneyService $orangeMoneyService): JsonResponse
     {
         $transactionData = $this->createTransactionDataFromRequest($request);
 
         try {
-            $transaction = $this->orangeMoneyService->initiatePayment($transactionData);
+            $transaction = $orangeMoneyService->initiatePayment($transactionData);
 
             return new JsonResponse([
                 'transaction_id' => $transaction->getTransactionId(),
