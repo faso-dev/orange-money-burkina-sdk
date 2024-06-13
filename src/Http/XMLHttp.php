@@ -21,15 +21,24 @@ class XMLHttp
     public const WITH_SSL_ENABLED = true;
     public const WITH_SSL_DISABLED = false;
 
+    /**
+     * @param string $url
+     * @param array $headers
+     * @param mixed $body
+     * @param bool $withSSLEnabled
+     * @return array
+     */
     public static function request(string $url, array $headers, $body, bool $withSSLEnabled = self::WITH_SSL_ENABLED): array
     {
         $curlHandler = curl_init();
-        curl_setopt($curlHandler, CURLOPT_URL, $url);
-        curl_setopt($curlHandler, CURLOPT_POST, true);
-        curl_setopt($curlHandler, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($curlHandler, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curlHandler, CURLOPT_POSTFIELDS, $body);
-        curl_setopt($curlHandler, CURLOPT_SSL_VERIFYPEER, $withSSLEnabled);
+        curl_setopt_array($curlHandler, [
+            CURLOPT_URL => $url,
+            CURLOPT_POST => true,
+            CURLOPT_HTTPHEADER => $headers,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_POSTFIELDS => $body,
+            CURLOPT_SSL_VERIFYPEER => $withSSLEnabled
+        ]);
         $response = curl_exec($curlHandler);
         $errno = curl_errno($curlHandler);
         $error = curl_error($curlHandler);
